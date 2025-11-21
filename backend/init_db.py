@@ -27,10 +27,10 @@ async def create_tables():
             # Create all tables
             await conn.run_sync(Base.metadata.create_all)
         
-        print("✅ Database tables created successfully!")
+        print("SUCCESS: Database tables created successfully!")
         
     except Exception as e:
-        print(f"❌ Error creating tables: {e}")
+        print(f"ERROR: Error creating tables: {e}")
         sys.exit(1)
     
     finally:
@@ -72,20 +72,20 @@ async def create_admin_user():
             session.add(admin_user)
             await session.commit()
             
-            print("✅ Admin user created!")
+            print("SUCCESS: Admin user created!")
             print("  Username: admin")
             print("  Password: admin123")
-            print("  ⚠️  Change this password in production!")
+            print("  WARNING: Change this password in production!")
             
     except Exception as e:
-        print(f"❌ Error creating admin user: {e}")
+        print(f"ERROR: Error creating admin user: {e}")
     
     finally:
         await engine.dispose()
 
 async def main():
     """Main initialization function"""
-    print("🗄️  ContentHub Database Initialization")
+    print("ContentHub Database Initialization")
     print("=====================================")
     
     # Create tables
@@ -96,7 +96,7 @@ async def main():
     if create_admin == 'y':
         await create_admin_user()
     
-    print("\n🎉 Database initialization complete!")
+    print("\nSUCCESS: Database initialization complete!")
 
 if __name__ == "__main__":
     asyncio.run(main())

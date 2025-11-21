@@ -35,8 +35,6 @@ class Settings(BaseSettings):
     ALLOWED_AUDIO_TYPES: list = ["audio/mpeg", "audio/wav", "audio/ogg"]
     ALLOWED_VIDEO_TYPES: list = ["video/mp4", "video/quicktime", "video/x-msvideo", "video/webm"]
     
-    class Config:
-        env_file = ".env"
-        case_sensitive = True
+    model_config = {"env_file": ".env", "case_sensitive": True, "extra": "ignore"}
 
 settings = Settings()
